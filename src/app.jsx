@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navDrawerOpen: false,
+      navDrawerOpen: true,
     };
     this.handleChangeRequestNavDrawer = this.handleChangeRequestNavDrawer.bind(this);
   }
@@ -63,7 +63,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.object,
   width: PropTypes.number,
 };
 

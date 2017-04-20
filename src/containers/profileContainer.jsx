@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
+import Snackbar from 'material-ui/Snackbar';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import ThemeDefault from '../styles/theme-default';
 
@@ -23,6 +24,7 @@ class User extends Component {
       user_phone: this.props.user.user_phone || null,
       user_birthday: this.props.user.user_birthday || null,
       user_info: this.props.user.user_info || null,
+      snackBarOpen: false,
     };
     this.styles = {
       paper: {
@@ -59,13 +61,22 @@ class User extends Component {
     this.setState({ user_birthday: date });
   };
 
+  handleSnackBarClose = () => {
+    this.setState({
+      snackBarOpen: false,
+    });
+  };
+
   handleSubmit = (e) => {
     // e.preventDefault();
 
     this.props.updateUser(this.state)
       .then(response => {
-        if (response === true) {
-          return this.props.history.push('/profile');
+        if (response) {
+          console.log('updated profile');
+          this.setState({
+            snackBarOpen: true,
+          });
         }
       });
   };
@@ -136,6 +147,13 @@ class User extends Component {
                         type="Submit"
                       />
                     </ValidatorForm>
+                    <Snackbar
+                      open={this.state.snackBarOpen}
+                      message="Profile updated!"
+                      autoHideDuration={3000}
+                      onRequestClose={this.handleSnackBarClose}
+                      contentStyle={{ textAlign: 'center' }}
+                    />
                   </Paper>
                 </Col>
               </Row>

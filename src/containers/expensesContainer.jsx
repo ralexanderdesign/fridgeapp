@@ -64,22 +64,22 @@ class houseExpenses extends Component {
     return (
       <Grid fluid>
         <Row>
-          <Col xs={6}>
+          <Col md={6}>
             <Paper style={this.styles.paper}>
               <ExpensesGraph expenses={this.props.expenses} />
             </Paper>
             <br />
             <Paper style={this.styles.paper}>
-            <MonthlyFinances expenses={this.props.expenses} />
+              <MonthlyFinances expenses={this.props.expenses} />
             </Paper>
           </Col>
-          <Col xs={6}>
+          <Col md={6}>
             <Paper style={this.styles.paper}>
               <Payment total={this.state.billTotal} />
               <PaypalButton paypalAdmin={this.props.paypalAdmin} total={this.state.billTotal} />
             </Paper>
               <br />
-            <Paper style={this.styles.paper}>  
+            <Paper style={this.styles.paper}>
               <Summary bill={this.state.billTotal} handleOnToggle={this.handleOnToggle} expenses={this.props.expenses} />
             </Paper>
           </Col>

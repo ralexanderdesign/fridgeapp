@@ -48,7 +48,7 @@ const signup = (req, res, next) => {
 };
 
 const updateUser = (req, res, next) => {
-  console.log('got into update user',req,res);
+  console.log('got into update user', req, res);
   User.updateUser(req.body, (err, user) => {
     if (err) {
       next(new Error(err));
@@ -58,26 +58,26 @@ const updateUser = (req, res, next) => {
   });
 };
 
-const change = (req,res,next) => {
+const change = (req, res, next) => {
   console.log('im inside change in the controller');
   User.change(req.body, (err, user) => {
-    if(err){
+    if (err) {
       next(new Error(err));
-    }else{
+    } else {
       console.log(req.body)
     }
   });
 };
 
-
 const removeUser = (req, res, next) => {
   console.log('got into update user');
-      User.removeUser(req.body, (err, user) => {
-        if (err) {
-          next(new Error(err));
-        }
-      }
-  );
+  User.removeUser(req.body, (err, user) => {
+    if (err) {
+      next(new Error(err));
+    } else {
+      res.send(user);
+    }
+  });
 };
 
 const joinHouse = (req, res, next) => {
@@ -86,7 +86,7 @@ const joinHouse = (req, res, next) => {
     if (err) {
       next(new Error(err));
     } else {
-      console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%',user)
+      console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%', user)
       res.send(user);
     }
   });
